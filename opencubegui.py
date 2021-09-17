@@ -34,12 +34,15 @@ from PyQt5.QtWidgets import (
 
 
 from CUBE_analyzer import cube1
+from plotwidget import *
+
+
 
 class cubegui(QWidget):
 
     def __init__(self):
         super().__init__()
-        self.setFixedSize(600, 600)
+        self.setFixedSize(800, 600)
         self.setWindowTitle("Cube analyze")
         self.cubeobject = None
 
@@ -53,7 +56,7 @@ class cubegui(QWidget):
 
         opencubegroup = QGroupBox("CUBE FILE")
         analyzecube = QGroupBox("Analyze")
-
+        plotbox =QGroupBox("Plot")
 
         grid1 = QGridLayout()
         grid1.addWidget(opencubepb)
@@ -82,11 +85,25 @@ class cubegui(QWidget):
         
         analyzecube.setLayout(gridanalyze)
         
-        mylayout = QVBoxLayout()
         
-
-        mylayout.addWidget(opencubegroup)
-        mylayout.addWidget(analyzecube)
+        mylayout = QHBoxLayout()
+        
+        vlay = QVBoxLayout()      
+        vlay.addWidget(opencubegroup)
+        vlay.addWidget(analyzecube)
+        
+        
+        
+        mylayout.addLayout(vlay)
+        
+        v2lay = QVBoxLayout()
+        
+        extwidget = plotwin()
+        v2lay.addWidget(extwidget)
+        
+        plotbox.setLayout(v2lay)
+        
+        mylayout.addWidget(plotbox)
         self.setLayout(mylayout)
 
 
