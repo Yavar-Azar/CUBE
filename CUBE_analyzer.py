@@ -284,6 +284,9 @@ class cube1(object):
         for i in range(natoms):
             xyz.append([Atom(int(coords[i,0])).symbol, coords[i,1], coords[i,2], coords[i,3]])        
         
+        
+        
+        datasum = dv*np.sum(grid3d)
             
         data={'grid3d':grid3d}
         data.update({'1dgrid': grid})
@@ -295,10 +298,11 @@ class cube1(object):
         data.update({'xyzlist':xyz})
         data.update({'gdims':gdims})
         data.update({'spacemesh': spacemesh})
-        data.update({'element':dv})
+        data.update({'diffvol':dv})
         data.update({'diffxyz':mesh})
         data.update({'gridvector':gridvect})
         data.update({'headlines':heads})
+        data.update({'datasum':datasum})
 
         
         
@@ -313,7 +317,7 @@ class cube1(object):
 
     @property     
     def diffvol(self):
-        return self.readcube(self.cube)['element']
+        return self.readcube(self.cube)['diffvol']
         
         
     @property
@@ -356,6 +360,9 @@ class cube1(object):
     @property
     def grid1d(self):
         return self.readcube(self.cube)['1dgrid']    
+    @property
+    def datasum(self):
+        return self.readcube(self.cube)['datasum']   
    
     @property
     def gridvectors(self):
