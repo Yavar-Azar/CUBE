@@ -1,0 +1,25 @@
+start n1  
+geometry  units au noautoz nocenter
+  C  0.1 0.0 0.0
+  O  2.2 0.0 0.0
+end  
+basis; * library cc-pvdz;end 
+dft
+ iterations 50
+ vectors  output co.movecs
+ print  kinetic_energy  
+ xc xpbe96 cpbe96  
+end  
+dplot  
+  TITLE charge  
+  vectors co.movecs  
+LimitXYZ units au  
+-5. 5.0 79    
+-5. 5.0 79   
+-5. 5.0 79 
+ spin total 
+ gaussian  
+ output chargedensity2.cube  
+end  
+task dft       
+task dplot

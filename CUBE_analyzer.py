@@ -1265,12 +1265,12 @@ class cube1(object):
         
        
         
-        rho1d=np.reshape(rho, (np.shape(rho)[0],))
+        rho1d = np.reshape(rho, (np.shape(rho)[0],))
         
         
         
         
-        diffv=denscube.diffvol
+        diffv = denscube.diffvol
                     
         sum1=np.sum(rho)*diffv
         
@@ -1294,16 +1294,16 @@ class cube1(object):
         
         
         
-        xyzvector=rhodata[:,:3]
+        xyzvector = rhodata[:,:3]
 #        weight1=((elfvector[:,3]))
         
  #       weightelf=1/weight1
  #       weight=weightelf/max(weightelf)
         
-        atomcenters=denscube.position[:,1:]-denscube.origin
-        atomicnumbers=denscube.position[:,0]
+        atomcenters = denscube.position[:,1:]-denscube.origin
+        atomicnumbers = denscube.position[:,0]
         #
-        atomicweights=atomicnumbers/np.sum(atomicnumbers)
+        atomicweights = atomicnumbers/np.sum(atomicnumbers)
         
         
         
@@ -1318,7 +1318,11 @@ class cube1(object):
   #      func1.fit(xyzvector, sample_weight=weight)
         labels=func1.fit_predict(xyzvector)
         
-
+        param2 = func1.fit(xyzvector)
+        
+        
+        param1 = func1.get_params(deep=True)
+        print(param2)
         
         labels01=np.reshape(labels, (np.shape(xyzvector)[0],1) )
         xyzlabeled=np.hstack((xyzvector,labels01 ))

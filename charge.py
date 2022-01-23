@@ -14,26 +14,20 @@ from CUBE_analyzer import cube1
 
 
 
-
-
-test = cube1("chargedensity.cube")
-
-data = test.grid3d
-
-gridnumber = len(data[0,0,:])
-
-halfnum = int((gridnumber-1)/2)
-
-x = np.linspace(-5,5, gridnumber)[halfnum :]
-
-xdata = data[halfnum :, halfnum, halfnum]
-
-chargesum = test.diffvol*np.sum(data)
-
-print("total charge is :  "+str(chargesum))
+test1 = cube1("charge1.cube")
+test2 = cube1("charge2.cube")
 
 
 
 
+data1= test1.grid3d
+data2 =test2.grid3d
+
+
+res1 = np.sum(data1)*test1.diffvol
+res2 = np.sum(data2)*test2.diffvol
+
+print(res1, np.max(data1))
+print(res2, np.max(data2))
 
 
